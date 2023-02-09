@@ -2,7 +2,7 @@ package d2;
 
 import java.util.Scanner;
 
-public class SamYookGu {
+public class SamYookGu2 {
 
 	public static void main(String[] args) {
 	

@@ -2,7 +2,7 @@ package d2;
 
 import java.util.Scanner;
 
-public class Frequent {
+public class Frequent1 {
 
 	public static void main(String[] args) {
 		
