@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="baekjoon/src"/>
+	<classpathentry kind="src" path="sw_expert_academy/src"/>
+	<classpathentry kind="output" path="baekjoon/bin"/>
+</classpath>
