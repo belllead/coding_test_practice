@@ -3,11 +3,10 @@ package 모의_SW_역량테스트;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BreakBrick2 {
+public class BreakBrick3 {
 	static int T, N, W, H, initialBrickCnt, maxBreak;
 	static int[][] brickMap, brickMapTest;
 	
@@ -30,16 +29,14 @@ public class BreakBrick2 {
 				st = new StringTokenizer(br.readLine());
 				for (int c=0; c<W; c++) {
 					brickMap[r][c] = Integer.parseInt(st.nextToken());
-					if (brickMap[r][c] != 0) 
+					// 처음 벽돌의 개수
+					if (brickMap[r][c] != 0)
 						initialBrickCnt++;
 				}
 			}
-			
-			maxBreak = 0;
-			
+						
 			sb.append("#" + tc + " ");
 			
-//			-----------------
 			maxBreak = breakBrickRoutine(brickMap, 1);
 			
 			sb.append(initialBrickCnt - maxBreak);
@@ -50,44 +47,43 @@ public class BreakBrick2 {
 	}
 	
 	static int breakBrickRoutine(int[][] brickMap, int shotNum) {
+		// 주어진 배열의 모든 열에 대해 각각 벽돌깨기를 진행한다.
+		// 각 구슬의 단계에서 최대로 부순값을 반환해
+		// 이전 단계의 테스트 결과에 더해준다.
+		
+		// 결과적으로 각 열에서 시작할 때 N번의 구슬을 사용할 때까지
+		// 가장 많이 벽돌을 깬 값이 반환된다.
+		
+		// 단계가 진행할 수록 배열의 개수가 W개 만큼 복사된다.
 		int[][][] columnTest = copyBrickMap(brickMap);
 		int[] testResult = new int[W];
 		int max = 0;
 		
+		// 복사한 각 배열에서 열 별로 벽돌깨기를 진행하고
+		// 그 중 가장 많이 깨진 벽돌 개수를 저장한다.
 		for (int i=0; i<W; i++) {
 			testResult[i] = breakTest(columnTest[i], i);
 			organizeMap(columnTest[i]);
 			max = Math.max(max, testResult[i]);
 		}
 		
-//		
-		if (shotNum == 2) {
-			for (int r=0; r<H; r++) {
-				for (int c=0; c<W; c++) {
-					System.out.print(columnTest[2][r][c] + " ");
-				}
-				System.out.println();
-			}
-		}
-		System.out.println();
-//		return max;
-		
 		if (shotNum == N) {
-			System.out.println(shotNum + Arrays.toString(testResult));
-			System.out.println();
+			// 구슬 매개변수가 N이면 재귀를 종료한다.
 			return max;
 		} else {
+			// 구슬 매개변수가 N이 아니면 N+1번째 구슬에 대해 재귀함수를 호출한다.
+			// 다음 단계의 결과값은 이번 단계의 테스트 결과에 더해진다.
 			for (int i=0; i<W; i++) {
 				testResult[i] += breakBrickRoutine(columnTest[i], shotNum+1);
 				max = Math.max(max, testResult[i]);
 			}
-			System.out.println(shotNum + Arrays.toString(testResult));
-			System.out.println(max);
 			return max;
 		}
 	}
 	
 	static int[][][] copyBrickMap(int[][] brickMap) {
+		// 주어진 배열을 열의 개수만큼 복사하여
+		// 3차원 배열에 할당하여 반환한다.
 		int[][][] copiedBrickMap = new int[W][H][W];
 		
 		for (int i=0; i<W; i++) {
@@ -100,6 +96,8 @@ public class BreakBrick2 {
 	}
 	
 	static int breakTest(int[][] brickMap, int col) {
+		// 주어진 배열의 한 열에 대해 가장 위 벽돌깨기를 진행하고 
+		// 깬 벽돌 개수를 반환한다.
 		int brokenBrickCnt = 0;
 		
 		for (int r=0; r<H; r++) {
