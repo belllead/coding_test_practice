@@ -29,16 +29,13 @@ T = 50
 lines.append(f'{T}')
 for tc in range(1, T+1):
   arr1 = []
-  N = random.randint(1, 1001)
-  Q = random.randint(1, 1001)
-  arr1.append(f'{N} {Q}')
-  lines.append(" ".join(arr1))
+  N = random.randint(1, 101)
+  lines.append(f'{N}')
 
   arr2 = []
-  for _ in range(Q):
-    L = random.randint(1, N+1)
-    R = random.randint(L, N+1)
-    arr2.append(f'{L} {R}')
+  for _ in range(100):
+    L = random.randint(1, 101)
+    arr2.append(f'{L} ')
   lines.append("\n".join(arr2))
 
 print("\n".join(lines))

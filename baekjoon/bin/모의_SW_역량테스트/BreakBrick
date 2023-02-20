@@ -1,0 +1,61 @@
+main() :
+	입력
+		테스트케이스
+		공 개수 N
+		벽돌 가로 W
+		벽돌 세로 H
+		벽돌 어레이[][]
+	
+	변수
+		깬 벽돌
+		
+	for 배열 꼭대기 from 0 to W
+		벽돌깨기()
+		깬 벽돌+ 
+		벽돌정리()		
+		if N == 1
+			깬 벽돌 최대값 비교
+		else
+			for 배열 꼭대기 from 0 to W
+				벽돌깨기()
+				깬 벽돌+
+				벽돌정리()
+				if N == 2
+					깬 벽돌 최대값 비교
+				else
+					for 배열 꼭대기 from 0 to W
+						벽돌깨기()
+						깬 벽돌+
+						벽돌정리()
+						if N == 3
+							깬 벽돌 최대값 비교
+						else
+							for 배열 꼭대기 from 0 to W
+								벽돌깨기()
+								깬 벽돌+
+								깬 벽돌 최대값 비교
+						
+	출력
+		원래 있던 벽돌 개수 - 최대값
+							 
+			
+void 벽돌깨기(int[] arr, int row, int col, int arr[row][col]) :
+	
+	delta = arr[row][col]-1
+	
+	for r from (row-delta) to (row+delta)
+		for c from (col-delta) to (col+delta)
+			if (r >= 0 && r < H && c >= 0 && c < W)
+				벽돌깨기(arr, r, c, arr[r][c])
+				
+	
+	arr[row][col] = 0
+	
+void 벽돌정리(int[] arr) :
+	for row from H-1 to 1
+		if arr[row][c] == 0
+			for r from row-1 to 1
+				if arr[r][c] != 0
+					swap(arr[row][c], arr[r][c])
+	
+	
