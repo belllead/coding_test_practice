@@ -1,4 +1,4 @@
-package study;
+package study.day0220;
 
 import java.io.BufferedReader;
 import java.io.IOException;

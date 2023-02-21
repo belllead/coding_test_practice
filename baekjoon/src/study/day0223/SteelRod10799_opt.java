@@ -1,4 +1,4 @@
-package study;
+package study.day0223;
 
 import java.util.Scanner;
 

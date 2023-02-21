@@ -11,25 +11,31 @@ public class SteelRod_opt3 {
 		int T = Integer.parseInt(br.readLine());
 		
 		for (int tc=1; tc<=T; tc++) {
-			String str = br.readLine();
+			String s = br.readLine();
 
-			int rod = 0;
-			int sum = 0;
+			char[] arr = new char[s.length()];
 			
-			for (int i=0; i<str.length(); i++) {
-				if (str.charAt(i) == '(') {
-					rod++;
+			int cnt = 0;
+			int sum = 0;
+			int idx = 0;
+			for (int i=0; i<s.length(); i++) {
+				char temp = s.charAt(i);
+				if (temp == '(') {
+					arr[idx++] = temp;
+					cnt++;
+					sum++;
 				} else {
-					if (str.charAt(i-1) == '(') {
-						rod--;
-						sum += rod;
+					if (arr[idx-1] == '(') {
+						cnt--;
+						sum--;
+						sum += cnt;
+						arr[idx++] = temp;
 					} else {
-						rod--;
-						sum++;
+						cnt--;
 					}
 				}
+				
 			}
-			
 			System.out.println("#" + tc + " " + sum);
 		}
 		br.close();
