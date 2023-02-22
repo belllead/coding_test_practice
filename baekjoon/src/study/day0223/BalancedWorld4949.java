@@ -13,9 +13,14 @@ public class BalancedWorld4949 {
 		String s;
 		
 		Stack<Character> stack = new Stack<>();
+		StringBuilder sb = new StringBuilder();
 		
 		while ((s = br.readLine()) != null) {
+			if (s.equals(".")) break;
+			else s = s.replace(" ", "");
+			
 			stack.clear();
+			
 			boolean flag = true;
 			
 			for (int i=0; i<s.length(); i++) {
@@ -50,14 +55,16 @@ public class BalancedWorld4949 {
 						break;
 					}
 				}
-//				System.out.println(stack.toString());
+				System.out.println(stack.toString());
 			}
 			
 			if (flag) {
-				System.out.println("yes");
+				sb.append("yes" + "\n");
 			} else {
-				System.out.println("no");
+				sb.append("no" + "\n");
 			}
 		}
+		
+		System.out.println(sb);
 	}
 }
