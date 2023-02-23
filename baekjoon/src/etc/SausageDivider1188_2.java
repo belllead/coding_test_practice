@@ -1,7 +1,5 @@
 package etc;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class SausageDivider1188_2 {
@@ -11,12 +9,20 @@ public class SausageDivider1188_2 {
 		Scanner sc = new Scanner(System.in);
 		int N = sc.nextInt();
 		int M = sc.nextInt();
-	
-		if (N % M == 0)
-			System.out.println(0);
-		else
-			System.out.println(M-1);
 		
+		int ans = M - GCD(N, M);
+		
+		System.out.println(ans);
+		sc.close();
+		
+	}
+	
+	static int GCD(int a, int b) {
+		if (b == 0) {
+			return a;
+		}
+		else 
+			return GCD(b, a % b);
 	}
 	
 }
