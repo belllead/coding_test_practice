@@ -1,4 +1,4 @@
-package dfs;
+package study.day0306;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,11 +6,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class MazeRunner2178_2 {
-	static int[][] maze;
+public class MazeRunner2178 {
+	static char[][] maze;
 	static byte[][] visit;
 	static int N, M, runCnt;
 	static int[] dr = {-1, 1, 0, 0}, dc = {0, 0, -1, 1};
@@ -23,14 +22,11 @@ public class MazeRunner2178_2 {
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		
-		maze = new int[N][M];
+		maze = new char[N][M];
 		visit = new byte[N][M];
 		
-		char[] temp = br.readLine().toCharArray();
 		for (int i=0; i<N; i++) {
-			for (int j=0; j<M; j++) {
-				maze[i][j] = temp[i] - '0';
-			}			
+			maze[i] = br.readLine().toCharArray();			
 		}
 		
 		run(0, 0);
@@ -46,10 +42,13 @@ public class MazeRunner2178_2 {
 	}
 	
 	static void run(int r, int c) {
-		Stack<int[]> dfs = new Stack<>();
+		visit[r][c] = 1;
+		runCnt++;
 		
-		int[] curr = {r, c};
-		dfs.push(curr);
+		if (r == N - 1 && c == M - 1) {
+			ans.add(runCnt);
+			return;
+		}
 		
 		for (int i=0; i<4; i++) {
 			int tr = r + dr[i];
